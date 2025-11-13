@@ -13,12 +13,26 @@ HTTP service that extracts main article content from web pages and returns struc
 
 ## Requirements
 
-- Node.js 18+
+- Node.js 18+ (for local development)
+- Docker and Docker Compose (for containerized deployment)
 
 ## Installation
 
+### Local Development
+
 ```bash
 npm install
+```
+
+### Docker
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build and run with Docker directly
+docker build -t content-distiller .
+docker run -p 3000:3000 content-distiller
 ```
 
 ## Configuration
@@ -37,7 +51,22 @@ Create a `.env` file (see `.env.example`) or set environment variables directly.
 
 ## Usage
 
-### Development
+### Docker (Recommended for Production)
+
+```bash
+# Start the service
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the service
+docker-compose down
+```
+
+You can customize environment variables in `docker-compose.yml` or create a `.env` file.
+
+### Local Development
 
 ```bash
 npm run dev
@@ -49,7 +78,7 @@ Or with auto-reload:
 npm run dev:watch
 ```
 
-### Production
+### Production (without Docker)
 
 ```bash
 npm run build
